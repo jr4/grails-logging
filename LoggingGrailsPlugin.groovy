@@ -4,9 +4,9 @@ import org.apache.log4j.NDC
 
 class LoggingGrailsPlugin {
   // the plugin version
-  def version = '0.1'
+  def version = '0.2'
   // groupId used by 'grails maven-install'
-  //def groupId = 'org.grails.plugins'
+  def groupId = 'jr4'
   // the version or versions of Grails the plugin is designed for
   def grailsVersion = "2.1 > *"
   // the other plugins this plugin depends on
@@ -17,8 +17,6 @@ class LoggingGrailsPlugin {
   def pluginExcludes = [
     "grails-app/views/error.gsp"
   ]
-  // package as a jar not a zip
-  def packaging = 'binary'
 
   def title = "Logging Plugin" // Headline display name of the plugin
 //def author = ""
