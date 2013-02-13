@@ -4,7 +4,7 @@ import org.apache.log4j.NDC
 
 class LoggingGrailsPlugin {
   // the plugin version
-  def version = '0.2'
+  def version = '0.3-SNAPSHOT'
   // groupId used by 'grails maven-install'
   def groupId = 'jr4'
   // the version or versions of Grails the plugin is designed for
