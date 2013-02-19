@@ -1,10 +1,11 @@
 import org.apache.commons.logging.impl.SLF4JLog
+import org.apache.log4j.Logger
 import org.apache.log4j.MDC
 import org.apache.log4j.NDC
 
 class LoggingGrailsPlugin {
   // the plugin version
-  def version = '0.2'
+  def version = '0.3'
   // groupId used by 'grails maven-install'
   def groupId = 'jr4'
   // the version or versions of Grails the plugin is designed for
@@ -53,36 +54,38 @@ class LoggingGrailsPlugin {
 
   def doWithDynamicMethods = { ctx ->
     // add useful methods to the 'log' object that Grails provides to our application
-    
-    SLF4JLog.metaClass.withMdc = { String key, Object value, Closure op ->
-      if (key) MDC.put(key, value == null ? '' : value.toString())
-      try {
-        op()
-      } finally {
-        if (key) MDC.remove(key)
-      }
-    }
 
-    SLF4JLog.metaClass.withMdc = { Map<String, Object> toAdd, Closure op ->
-      toAdd.each { key, value ->
-        MDC.put(key, value == null ? '' : value.toString())
-      }
-      try {
-        op()
-      } finally {
-        toAdd.each { key, value ->
-          MDC.remove(key)
+    [SLF4JLog, Logger].each {    
+      it.metaClass.withMdc = { String key, Object value, Closure op ->
+        if (key) MDC.put(key, value == null ? '' : value.toString())
+        try {
+          op()
+        } finally {
+          if (key) MDC.remove(key)
         }
       }
-    }
 
-    SLF4JLog.metaClass.withNdc = { Object message, Closure op ->
-      // unlike withMdc, show 'null' if null
-      NDC.push(message?.toString())
-      try {
-        op()
-      } finally {
-        NDC.pop()
+      it.metaClass.withMdc = { Map<String, Object> toAdd, Closure op ->
+        toAdd.each { key, value ->
+          MDC.put(key, value == null ? '' : value.toString())
+        }
+        try {
+          op()
+        } finally {
+          toAdd.each { key, value ->
+            MDC.remove(key)
+          }
+        }
+      }
+
+      it.metaClass.withNdc = { Object message, Closure op ->
+        // unlike withMdc, show 'null' if null
+        NDC.push(message?.toString())
+        try {
+          op()
+        } finally {
+          NDC.pop()
+        }
       }
     }
   }
