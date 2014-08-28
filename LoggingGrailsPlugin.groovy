@@ -9,10 +9,10 @@ class LoggingGrailsPlugin {
   // groupId used by 'grails maven-install'
   def groupId = 'jr4'
   // the version or versions of Grails the plugin is designed for
-  def grailsVersion = "2.1 > *"
+  def grailsVersion = "2.4 > *"
   // the other plugins this plugin depends on
   def dependsOn = [
-    pluginConfig: '0.1.5' // Plugin to simplify configuration of dependent applications
+    pluginConfig: '0.2.0' // Plugin to simplify configuration of dependent applications
   ]
   // resources that are excluded from plugin packaging
   def pluginExcludes = [
