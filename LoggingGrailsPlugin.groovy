@@ -5,14 +5,14 @@ import org.apache.log4j.NDC
 
 class LoggingGrailsPlugin {
   // the plugin version
-  def version = '0.4-SNAPSHOT'
+  def version = '0.4'
   // groupId used by 'grails maven-install'
   def groupId = 'jr4'
   // the version or versions of Grails the plugin is designed for
-  def grailsVersion = "2.1 > *"
+  def grailsVersion = "2.4 > *"
   // the other plugins this plugin depends on
   def dependsOn = [
-    pluginConfig: '0.1.5' // Plugin to simplify configuration of dependent applications
+    pluginConfig: '0.2.0' // Plugin to simplify configuration of dependent applications
   ]
   // resources that are excluded from plugin packaging
   def pluginExcludes = [
@@ -24,7 +24,7 @@ class LoggingGrailsPlugin {
 //def authorEmail = ""
   def description = 'Common logging facilities for projects'
 
-  // URL to the plugin's documentation
+// URL to the plugin's documentation
 //def documentation = "http://grails.org/plugin/logging"
 
   // Extra (optional) plugin metadata
